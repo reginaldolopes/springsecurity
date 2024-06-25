@@ -1,6 +1,8 @@
 package br.net.silvalopes.springsecurity.controllers;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
@@ -35,7 +37,7 @@ public class TokenController {
             throw new BadCredentialsException("Usuário ou senha estão incorretos");
         }
 
-        var now = Instant.now();
+        var now = LocalDateTime.now().toInstant(ZoneOffset.of("-03:00"));
         var expiresIn = 300L;
 
         var scopes = user.get().getRoles()

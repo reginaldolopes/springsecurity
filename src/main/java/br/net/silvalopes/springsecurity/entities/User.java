@@ -6,6 +6,9 @@ import java.util.UUID;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import br.net.silvalopes.springsecurity.controllers.dto.LoginRequestDto;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -37,6 +40,7 @@ public class User implements Serializable{
     @Column(unique = true)
     private String username;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
